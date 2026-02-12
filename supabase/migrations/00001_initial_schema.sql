@@ -661,10 +661,10 @@ create policy "report_updates_insert"
 -- 6d. report_follows
 -- ---------------------------------------------------------------------------
 
--- Users can see their own follows
+-- Anyone can read follows (needed for public follow counts on reports)
 create policy "report_follows_select"
   on public.report_follows for select
-  using (user_id = auth.uid());
+  using (true);
 
 -- Authenticated non-banned users can follow reports
 create policy "report_follows_insert"
@@ -724,6 +724,12 @@ create policy "flags_insert"
 create policy "notifications_select"
   on public.notifications for select
   using (user_id = auth.uid());
+
+-- No direct INSERT allowed - notifications are created ONLY by triggers
+-- This prevents users from creating fake notifications
+create policy "notifications_insert_deny"
+  on public.notifications for insert
+  with check (false);
 
 -- Users can mark their own notifications as read
 create policy "notifications_update"

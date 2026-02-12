@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef, useTransition } from "react"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -268,11 +269,13 @@ export function CreateReportForm() {
           aria-label="Upload photo"
         >
           {photoPreview ? (
-            <div className="relative w-full max-w-sm mx-auto">
-              <img
+            <div className="relative w-full max-w-sm mx-auto h-48">
+              <Image
                 src={photoPreview}
                 alt="Preview of selected photo"
-                className="rounded-lg max-h-48 w-auto mx-auto"
+                fill
+                className="rounded-lg object-contain"
+                unoptimized
               />
               <Button
                 type="button"

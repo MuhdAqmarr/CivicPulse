@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /me
+Disallow: /create
+Disallow: /auth/
+Disallow: /api/
+
+Sitemap: https://civicpulse.app/sitemap.xml

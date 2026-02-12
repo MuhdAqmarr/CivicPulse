@@ -38,9 +38,9 @@ export function ReportCard({ report, index = 0 }: ReportCardProps) {
     >
       <Link href={`/r/${report.id}`} className="block group">
         <Card className="overflow-hidden transition-shadow hover:shadow-md">
-          <div className="flex flex-col sm:flex-row">
+          <div className="flex flex-col sm:flex-row min-h-[120px]">
             {photoUrl && (
-              <div className="relative w-full sm:w-40 h-40 sm:h-auto shrink-0">
+              <div className="relative w-full sm:w-40 aspect-square sm:aspect-auto sm:h-auto shrink-0 bg-muted">
                 <Image
                   src={photoUrl}
                   alt={`Photo of issue: ${report.title}`}
