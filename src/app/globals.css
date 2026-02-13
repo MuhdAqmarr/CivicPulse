@@ -144,26 +144,8 @@ select:focus-visible,
   outline-offset: 2px;
 }
 
-/* Mapbox — protect internal elements from Tailwind preflight resets */
-.mapboxgl-map *,
-.mapboxgl-map *::before,
-.mapboxgl-map *::after {
-  box-sizing: content-box;
-  border-style: none;
-}
-.mapboxgl-canvas {
-  position: absolute !important;
-  top: 0;
-  left: 0;
-}
-.mapboxgl-canvas-container {
-  position: relative;
-  overflow: hidden;
-}
-
 /* Mapbox popup overrides to match theme */
 .mapboxgl-popup-content {
-  box-sizing: border-box;
   @apply bg-card text-card-foreground rounded-lg shadow-md p-3 text-sm;
 }
 .mapboxgl-popup-close-button {

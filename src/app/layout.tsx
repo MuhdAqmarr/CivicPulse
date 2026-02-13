@@ -77,6 +77,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/icons/icon-192.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/icons/icon-192.svg" />
+        <link href="https://api.mapbox.com/mapbox-gl-js/v3.18.1/mapbox-gl.css" rel="stylesheet" />
       </head>
       <body className={`${inter.className} antialiased`}>
         <ThemeProvider

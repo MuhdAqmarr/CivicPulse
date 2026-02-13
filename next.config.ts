@@ -32,7 +32,7 @@ const nextConfig: NextConfig = {
           value: [
             "default-src 'self'",
             "script-src 'self' 'unsafe-eval' 'unsafe-inline'", // Required for Next.js and GSAP
-            "style-src 'self' 'unsafe-inline'", // Required for styled-components and CSS-in-JS
+            "style-src 'self' 'unsafe-inline' https://api.mapbox.com", // Required for CSS-in-JS + Mapbox CSS
             "img-src 'self' data: https: blob:",
             "font-src 'self' data:",
             "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://api.mapbox.com https://*.tiles.mapbox.com https://events.mapbox.com",
