@@ -76,7 +76,7 @@ export function BeforeAfterReveal({ beforeUrl, afterUrl, title }: BeforeAfterRev
           {/* Before image (clipped) */}
           <div
             className="absolute inset-0 overflow-hidden"
-            style={{ width: `${sliderPos}%` }}
+            style={{ clipPath: `inset(0 ${100 - sliderPos}% 0 0)` }}
           >
             <Image
               src={beforeUrl}

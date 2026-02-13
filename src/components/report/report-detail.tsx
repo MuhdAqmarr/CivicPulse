@@ -161,29 +161,6 @@ export function ReportDetail({ report, currentProfile }: ReportDetailProps) {
             </div>
           )}
 
-          {/* Before/After Reveal */}
-          {report.status === "CLOSED" && photoUrl && closurePhotoUrl && (
-            <BeforeAfterReveal
-              beforeUrl={photoUrl}
-              afterUrl={closurePhotoUrl}
-              title={report.title}
-            />
-          )}
-
-          {/* Closure note without after photo */}
-          {report.status === "CLOSED" && !closurePhotoUrl && report.closure_note && (
-            <div className="rounded-lg border border-dashed border-muted-foreground/30 p-4 mb-6 text-center">
-              <div className="text-2xl mb-2" aria-hidden="true">&#x1F50D;</div>
-              <p className="text-sm font-medium mb-1">Awaiting Verification Photo</p>
-              <p className="text-xs text-muted-foreground">
-                The closer noted: &quot;{report.closure_note}&quot;
-              </p>
-              <p className="text-xs text-muted-foreground mt-2">
-                An &quot;after&quot; photo would help the community verify this fix.
-              </p>
-            </div>
-          )}
-
           {/* Location */}
           {report.location_label && (
             <div className="mb-4">
@@ -250,6 +227,31 @@ export function ReportDetail({ report, currentProfile }: ReportDetailProps) {
           </div>
         </CardContent>
       </Card>
+
+      {/* Before/After Reveal */}
+      {report.status === "CLOSED" && photoUrl && closurePhotoUrl && (
+        <div className="mt-6">
+          <BeforeAfterReveal
+            beforeUrl={photoUrl}
+            afterUrl={closurePhotoUrl}
+            title={report.title}
+          />
+        </div>
+      )}
+
+      {/* Closure note without after photo */}
+      {report.status === "CLOSED" && !closurePhotoUrl && report.closure_note && (
+        <div className="mt-6 rounded-lg border border-dashed border-muted-foreground/30 p-4 text-center">
+          <div className="text-2xl mb-2" aria-hidden="true">&#x1F50D;</div>
+          <p className="text-sm font-medium mb-1">Awaiting Verification Photo</p>
+          <p className="text-xs text-muted-foreground">
+            The closer noted: &quot;{report.closure_note}&quot;
+          </p>
+          <p className="text-xs text-muted-foreground mt-2">
+            An &quot;after&quot; photo would help the community verify this fix.
+          </p>
+        </div>
+      )}
 
       {/* Closure verification widget */}
       {report.status === "CLOSED" && !report.closure_confirmed && (
