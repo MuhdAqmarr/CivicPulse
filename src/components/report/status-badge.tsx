@@ -3,7 +3,7 @@
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 import { STATUS_LABELS, STATUS_COLORS, type ReportStatus } from "@/lib/types"
-import { motion, AnimatePresence } from "framer-motion"
+import { m, AnimatePresence } from "framer-motion"
 import { useReducedMotion } from "@/hooks/use-reduced-motion"
 
 interface StatusBadgeProps {
@@ -47,9 +47,9 @@ export function StatusBadge({ status, closureConfirmed, className }: StatusBadge
       {prefersReducedMotion ? (
         <div key={status + String(closureConfirmed)}>{badgeContent}</div>
       ) : (
-        <motion.div key={status + String(closureConfirmed)} {...BADGE_ANIM}>
+        <m.div key={status + String(closureConfirmed)} {...BADGE_ANIM}>
           {badgeContent}
-        </motion.div>
+        </m.div>
       )}
     </AnimatePresence>
   )

@@ -1,6 +1,6 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { m } from "framer-motion"
 import { useReducedMotion } from "@/hooks/use-reduced-motion"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 
@@ -39,14 +39,14 @@ export function BadgeDisplay({ firstReport, helper, resolver, size = "md" }: Bad
           return (
             <Tooltip key={badge.key}>
               <TooltipTrigger asChild>
-                <motion.span
+                <m.span
                   className={`${sizeClass} cursor-default ${isEarned ? "" : "opacity-30 grayscale"}`}
                   {...(prefersReducedMotion || !isEarned ? {} : BADGE_SPRING)}
                   role="img"
                   aria-label={`${badge.label}${isEarned ? " (earned)" : " (locked)"}`}
                 >
                   {badge.emoji}
-                </motion.span>
+                </m.span>
               </TooltipTrigger>
               <TooltipContent>
                 <p className="font-semibold">{badge.label}</p>

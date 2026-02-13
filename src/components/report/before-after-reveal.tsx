@@ -5,6 +5,9 @@ import Image from "next/image"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 
+const BLUR_PLACEHOLDER =
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAADCAIAAAA7ljmRAAAADklEQVQIW2P4z8BQDwAEgAF/QualzQAAAABJRU5ErkJggg==" as const
+
 interface BeforeAfterRevealProps {
   beforeUrl: string
   afterUrl: string
@@ -97,6 +100,8 @@ export function BeforeAfterReveal({ beforeUrl, afterUrl, title }: BeforeAfterRev
             fill
             className="object-cover"
             sizes="(max-width: 768px) 100vw, 700px"
+            placeholder="blur"
+            blurDataURL={BLUR_PLACEHOLDER}
           />
 
           {/* Before image (clipped) */}
@@ -111,6 +116,8 @@ export function BeforeAfterReveal({ beforeUrl, afterUrl, title }: BeforeAfterRev
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 700px"
+              placeholder="blur"
+              blurDataURL={BLUR_PLACEHOLDER}
             />
           </div>
 

@@ -1,6 +1,6 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { m } from "framer-motion"
 import { useReducedMotion } from "@/hooks/use-reduced-motion"
 import Image from "next/image"
 import {
@@ -73,7 +73,7 @@ export function LandingFeatures() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {features.map((feature, i) => (
-            <motion.div
+            <m.div
               key={feature.title}
               className="rounded-xl border bg-card p-6 hover:shadow-md transition-shadow"
               variants={prefersReducedMotion ? undefined : CARD_VARIANTS}
@@ -91,7 +91,7 @@ export function LandingFeatures() {
               </div>
               <h3 className="font-semibold mb-2">{feature.title}</h3>
               <p className="text-sm text-muted-foreground">{feature.description}</p>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { StatusBadge } from "./status-badge"
 import { formatRelativeTime, getStorageUrl } from "@/lib/utils"
 import type { Report, Profile } from "@/lib/types"
-import { motion } from "framer-motion"
+import { m } from "framer-motion"
 import { useReducedMotion } from "@/hooks/use-reduced-motion"
 
 interface ReportCardProps {
@@ -120,13 +120,13 @@ export function ReportCard({ report }: ReportCardProps) {
   if (prefersReducedMotion) return <div>{inner}</div>
 
   return (
-    <motion.div
+    <m.div
       variants={CARD_VARIANTS}
       initial="hidden"
       whileInView="visible"
       viewport={VIEWPORT}
     >
       {inner}
-    </motion.div>
+    </m.div>
   )
 }

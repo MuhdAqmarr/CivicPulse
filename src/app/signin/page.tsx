@@ -28,7 +28,7 @@ function SignInContent() {
       <Card className="w-full max-w-md">
         <CardHeader className="text-center space-y-4">
           <Link href="/" className="flex items-center justify-center gap-2">
-            <Image src="/Logo.png" alt="CivicPulse" width={48} height={48} className="h-12 w-12 rounded-xl" />
+            <Image src="/Logo.png" alt="CivicPulse" width={48} height={48} className="h-12 w-12 rounded-xl" priority />
           </Link>
           <div>
             <CardTitle className="text-2xl">Welcome to CivicPulse</CardTitle>

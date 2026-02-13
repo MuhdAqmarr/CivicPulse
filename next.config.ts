@@ -1,6 +1,19 @@
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
+  experimental: {
+    optimizePackageImports: [
+      "lucide-react",
+      "framer-motion",
+      "@radix-ui/react-avatar",
+      "@radix-ui/react-dialog",
+      "@radix-ui/react-dropdown-menu",
+      "@radix-ui/react-popover",
+      "@radix-ui/react-select",
+      "@radix-ui/react-tabs",
+      "@radix-ui/react-tooltip",
+    ],
+  },
   images: {
     remotePatterns: [
       {
@@ -18,6 +31,17 @@ const nextConfig: NextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
   compress: true,
+  // Performance budgets — warn if any single asset or entrypoint exceeds limits
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.performance = {
+        hints: 'warning',
+        maxAssetSize: 256 * 1024,        // 256 KB per asset
+        maxEntrypointSize: 512 * 1024,    // 512 KB per entrypoint
+      }
+    }
+    return config
+  },
   headers: async () => [
     {
       source: '/(.*)',
@@ -47,6 +71,12 @@ const nextConfig: NextConfig = {
       headers: [
         { key: 'Cache-Control', value: 'no-cache, no-store, must-revalidate' },
         { key: 'Service-Worker-Allowed', value: '/' },
+      ],
+    },
+    {
+      source: '/_next/static/(.*)',
+      headers: [
+        { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
       ],
     },
   ],

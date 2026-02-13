@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
-import { motion } from "framer-motion"
+import { m } from "framer-motion"
 import { useReducedMotion } from "@/hooks/use-reduced-motion"
 
 const CTA_VARIANTS = {
@@ -19,7 +19,7 @@ export function LandingCTA() {
   return (
     <section className="py-20 md:py-28" aria-labelledby="cta-heading">
       <div className="container mx-auto px-4">
-        <motion.div
+        <m.div
           className="max-w-2xl mx-auto text-center rounded-2xl border bg-gradient-to-b from-primary/5 to-background p-10 md:p-14"
           variants={prefersReducedMotion ? undefined : CTA_VARIANTS}
           initial={prefersReducedMotion ? undefined : "hidden"}
@@ -44,7 +44,7 @@ export function LandingCTA() {
               <Link href="/about">Learn how it works</Link>
             </Button>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   )
