@@ -1,15 +1,10 @@
 import type { Metadata, Viewport } from "next"
-import { Inter } from "next/font/google"
+import { GeistPixelCircle } from "geist/font/pixel"
 import { ThemeProvider } from "@/components/theme-provider"
 import { SkipLink } from "@/components/layout/skip-link"
 import { Toaster } from "sonner"
 import { PWAProvider } from "@/components/pwa/pwa-provider"
 import "./globals.css"
-
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-})
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"),
@@ -79,7 +74,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/Logo.png" />
         <link href="https://api.mapbox.com/mapbox-gl-js/v3.18.1/mapbox-gl.css" rel="stylesheet" />
       </head>
-      <body className={`${inter.className} antialiased`}>
+      <body className={`${GeistPixelCircle.className} antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

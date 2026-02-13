@@ -3,13 +3,14 @@
 import { useTransition } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Input } from "@/components/ui/input"
 import {
-  Flag, Eye, EyeOff, Lock, Unlock, UserX, UserCheck, Trash2, Loader2, Shield, AlertTriangle, Copy,
+  Flag, Eye, EyeOff, Lock, Unlock, UserX, UserCheck, Trash2, Loader2, AlertTriangle, Copy,
 } from "lucide-react"
 import {
   toggleHideReport,
@@ -96,7 +97,7 @@ export function AdminDashboard({
           Flags ({flaggedReports.length + flaggedUpdates.length})
         </TabsTrigger>
         <TabsTrigger value="reports" className="gap-1">
-          <Shield className="h-4 w-4" />
+          <Image src="/Logo.png" alt="" width={16} height={16} className="h-4 w-4" />
           Reports
         </TabsTrigger>
         <TabsTrigger value="users" className="gap-1">

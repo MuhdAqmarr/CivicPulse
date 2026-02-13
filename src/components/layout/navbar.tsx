@@ -3,7 +3,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { Plus, Shield, User } from "lucide-react"
+import { Plus, User } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -101,7 +101,7 @@ export function Navbar({ profile }: NavbarProps) {
                   {profile.role === "admin" && (
                     <DropdownMenuItem asChild>
                       <Link href="/admin" className="cursor-pointer">
-                        <Shield className="mr-2 h-4 w-4" />
+                        <Image src="/Logo.png" alt="" width={16} height={16} className="mr-2 h-4 w-4" />
                         Admin
                       </Link>
                     </DropdownMenuItem>

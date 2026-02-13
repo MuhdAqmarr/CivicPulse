@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
-import { ArrowRight, CheckCircle2, Eye, Flag, MessageSquare, Shield, Star, Users } from "lucide-react"
+import Image from "next/image"
+import { ArrowRight, CheckCircle2, Eye, Flag, MessageSquare, Star, Users } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
@@ -136,7 +137,7 @@ export default function AboutPage() {
       {/* Guidelines */}
       <section className="mb-14" id="guidelines" aria-labelledby="guidelines-heading">
         <h2 id="guidelines-heading" className="text-2xl font-bold mb-6 flex items-center gap-2">
-          <Shield className="h-6 w-6 text-primary" />
+          <Image src="/Logo.png" alt="" width={24} height={24} className="h-6 w-6" />
           Community Guidelines
         </h2>
         <Card>
@@ -159,7 +160,7 @@ export default function AboutPage() {
                 <span><strong>Verify honestly.</strong> Only vote &quot;Fixed&quot; if the issue is genuinely resolved.</span>
               </li>
               <li className="flex items-start gap-2">
-                <Shield className="h-4 w-4 mt-0.5 text-primary shrink-0" />
+                <Image src="/Logo.png" alt="" width={16} height={16} className="h-4 w-4 mt-0.5 shrink-0" />
                 <span><strong>No spam or abuse.</strong> Violations result in account restrictions.</span>
               </li>
             </ul>

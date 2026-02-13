@@ -3,7 +3,7 @@
 import { createClient } from "@/lib/supabase/client"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Shield } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
 import { Suspense } from "react"
@@ -28,9 +28,7 @@ function SignInContent() {
       <Card className="w-full max-w-md">
         <CardHeader className="text-center space-y-4">
           <Link href="/" className="flex items-center justify-center gap-2">
-            <div className="h-12 w-12 rounded-xl bg-primary flex items-center justify-center">
-              <Shield className="h-7 w-7 text-primary-foreground" />
-            </div>
+            <Image src="/Logo.png" alt="CivicPulse" width={48} height={48} className="h-12 w-12 rounded-xl" />
           </Link>
           <div>
             <CardTitle className="text-2xl">Welcome to CivicPulse</CardTitle>

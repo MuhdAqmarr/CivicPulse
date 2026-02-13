@@ -2,10 +2,10 @@
 
 import { motion } from "framer-motion"
 import { useReducedMotion } from "@/hooks/use-reduced-motion"
+import Image from "next/image"
 import {
   Camera,
   Bell,
-  Shield,
   CheckCircle2,
   Users,
   Trophy,
@@ -23,7 +23,7 @@ const features = [
     description: "Follow reports that matter to you. Get real-time updates when status changes or new comments appear.",
   },
   {
-    icon: Shield,
+    icon: null,
     title: "Community Verification",
     description: "Closures are verified by the community. Vote on whether fixes are confirmed, ensuring accountability.",
   },
@@ -83,7 +83,11 @@ export function LandingFeatures() {
               custom={i}
             >
               <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                <feature.icon className="h-5 w-5 text-primary" />
+                {feature.icon ? (
+                  <feature.icon className="h-5 w-5 text-primary" />
+                ) : (
+                  <Image src="/Logo.png" alt="" width={20} height={20} className="h-5 w-5" />
+                )}
               </div>
               <h3 className="font-semibold mb-2">{feature.title}</h3>
               <p className="text-sm text-muted-foreground">{feature.description}</p>
