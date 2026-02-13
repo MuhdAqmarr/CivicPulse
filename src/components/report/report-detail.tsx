@@ -22,6 +22,7 @@ import { AddCommentForm } from "./add-comment-form"
 import { toggleFollow } from "@/lib/actions/follows"
 import { flagItem } from "@/lib/actions/flags"
 import { formatRelativeTime, getStorageUrl } from "@/lib/utils"
+import { ReportMap } from "@/components/map"
 import type { ReportWithDetails, Profile } from "@/lib/types"
 import { useRealtime } from "@/hooks/use-realtime"
 import { toast } from "sonner"
@@ -187,11 +188,23 @@ export function ReportDetail({ report, currentProfile }: ReportDetailProps) {
 
           {/* Location */}
           {report.location_label && (
-            <div className="flex items-center gap-2 mb-4 text-sm text-muted-foreground">
-              <MapPin className="h-4 w-4" />
-              <span>{report.location_label}</span>
-              {!report.location_is_exact && (
-                <Badge variant="outline" className="text-xs">Approximate area</Badge>
+            <div className="mb-4">
+              <div className="flex items-center gap-2 mb-2 text-sm text-muted-foreground">
+                <MapPin className="h-4 w-4" />
+                <span>{report.location_label}</span>
+                {!report.location_is_exact && (
+                  <Badge variant="outline" className="text-xs">Approximate area</Badge>
+                )}
+              </div>
+              {report.location_lat != null && report.location_lng != null && (
+                <ReportMap
+                  reports={[report]}
+                  interactive={false}
+                  height="200px"
+                  center={{ lat: report.location_lat, lng: report.location_lng }}
+                  zoom={report.location_is_exact ? 15 : 13}
+                  showPopups={false}
+                />
               )}
             </div>
           )}

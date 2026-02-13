@@ -44,6 +44,18 @@ const features = [
   },
 ]
 
+// Stable variant objects — defined once at module level
+const CARD_VARIANTS = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, delay: i * 0.08 },
+  }),
+}
+
+const VIEWPORT = { once: true, margin: "-50px" }
+
 export function LandingFeatures() {
   const prefersReducedMotion = useReducedMotion()
 
@@ -64,14 +76,11 @@ export function LandingFeatures() {
             <motion.div
               key={feature.title}
               className="rounded-xl border bg-card p-6 hover:shadow-md transition-shadow"
-              {...(prefersReducedMotion
-                ? {}
-                : {
-                    initial: { opacity: 0, y: 20 },
-                    whileInView: { opacity: 1, y: 0 },
-                    viewport: { once: true, margin: "-50px" },
-                    transition: { duration: 0.4, delay: i * 0.08 },
-                  })}
+              variants={prefersReducedMotion ? undefined : CARD_VARIANTS}
+              initial={prefersReducedMotion ? undefined : "hidden"}
+              whileInView={prefersReducedMotion ? undefined : "visible"}
+              viewport={prefersReducedMotion ? undefined : VIEWPORT}
+              custom={i}
             >
               <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
                 <feature.icon className="h-5 w-5 text-primary" />

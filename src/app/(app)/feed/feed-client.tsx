@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
-import { Search, SlidersHorizontal, X } from "lucide-react"
+import { Search, SlidersHorizontal, X, List, Map as MapIcon } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import {
@@ -13,6 +13,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { ReportCard } from "@/components/report/report-card"
+import { ReportMap } from "@/components/map"
 import { CATEGORIES } from "@/lib/types"
 import type { Report, Profile } from "@/lib/types"
 
@@ -31,6 +32,7 @@ export function FeedClient({ initialReports, currentFilters }: FeedClientProps) 
   const searchParams = useSearchParams()
   const [search, setSearch] = useState(currentFilters.q || "")
   const [showFilters, setShowFilters] = useState(false)
+  const [view, setView] = useState<"list" | "map">("list")
 
   const updateFilters = useCallback(
     (key: string, value: string) => {
@@ -83,6 +85,28 @@ export function FeedClient({ initialReports, currentFilters }: FeedClientProps) 
           >
             <SlidersHorizontal className="h-4 w-4" />
           </Button>
+          <div className="flex rounded-lg border overflow-hidden">
+            <Button
+              type="button"
+              variant={view === "list" ? "secondary" : "ghost"}
+              size="icon"
+              onClick={() => setView("list")}
+              aria-label="List view"
+              aria-pressed={view === "list"}
+            >
+              <List className="h-4 w-4" />
+            </Button>
+            <Button
+              type="button"
+              variant={view === "map" ? "secondary" : "ghost"}
+              size="icon"
+              onClick={() => setView("map")}
+              aria-label="Map view"
+              aria-pressed={view === "map"}
+            >
+              <MapIcon className="h-4 w-4" />
+            </Button>
+          </div>
         </form>
 
         {showFilters && (
@@ -151,6 +175,13 @@ export function FeedClient({ initialReports, currentFilters }: FeedClientProps) 
               : "Be the first to report an issue!"}
           </p>
         </div>
+      ) : view === "map" ? (
+        <ReportMap
+          reports={initialReports}
+          interactive
+          height="calc(100vh - 280px)"
+          className="min-h-[400px]"
+        />
       ) : (
         <div className="space-y-4">
           {initialReports.map((report, i) => (

@@ -1,3 +1,4 @@
+@import "mapbox-gl/dist/mapbox-gl.css";
 @import "tailwindcss";
 
 @custom-variant dark (&:is(.dark *));
@@ -142,6 +143,17 @@ select:focus-visible,
 [tabindex]:not([tabindex="-1"]):focus-visible {
   outline: 2px solid hsl(var(--ring));
   outline-offset: 2px;
+}
+
+/* Mapbox popup overrides to match theme */
+.mapboxgl-popup-content {
+  @apply bg-card text-card-foreground rounded-lg shadow-md p-3 text-sm;
+}
+.mapboxgl-popup-close-button {
+  @apply text-muted-foreground hover:text-foreground text-lg px-1;
+}
+.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
+  border-top-color: var(--card);
 }
 
 /* Reduced motion */

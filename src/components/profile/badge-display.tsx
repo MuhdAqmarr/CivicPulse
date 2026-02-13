@@ -17,6 +17,13 @@ const badges = [
   { key: "resolver" as const, emoji: "\u{1F3C6}", label: "Resolver", desc: "2+ confirmed closures" },
 ]
 
+// Stable spring animation — defined at module level
+const BADGE_SPRING = {
+  initial: { scale: 0 },
+  animate: { scale: 1 },
+  transition: { type: "spring", stiffness: 300, damping: 15 },
+}
+
 export function BadgeDisplay({ firstReport, helper, resolver, size = "md" }: BadgeDisplayProps) {
   const prefersReducedMotion = useReducedMotion()
   const earned = { firstReport, helper, resolver }
@@ -34,13 +41,7 @@ export function BadgeDisplay({ firstReport, helper, resolver, size = "md" }: Bad
               <TooltipTrigger asChild>
                 <motion.span
                   className={`${sizeClass} cursor-default ${isEarned ? "" : "opacity-30 grayscale"}`}
-                  {...(prefersReducedMotion || !isEarned
-                    ? {}
-                    : {
-                        initial: { scale: 0 },
-                        animate: { scale: 1 },
-                        transition: { type: "spring", stiffness: 300, damping: 15 },
-                      })}
+                  {...(prefersReducedMotion || !isEarned ? {} : BADGE_SPRING)}
                   role="img"
                   aria-label={`${badge.label}${isEarned ? " (earned)" : " (locked)"}`}
                 >
