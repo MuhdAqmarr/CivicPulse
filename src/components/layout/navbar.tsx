@@ -45,7 +45,7 @@ export function Navbar({ profile }: NavbarProps) {
       <nav className="container mx-auto flex h-16 items-center justify-between px-4" aria-label="Main navigation">
         <div className="flex items-center gap-6">
           <Link href="/" className="flex items-center gap-2 font-bold text-lg">
-            <Image src="/Logo.png" alt="CivicPulse" width={32} height={32} className="h-8 w-8 rounded-lg" />
+            <Image src="/Logo.png" alt="CivicPulse" width={32} height={32} className="h-8 w-8 rounded-lg" priority />
             <span className="hidden sm:inline">CivicPulse</span>
           </Link>
 

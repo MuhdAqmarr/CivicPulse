@@ -17,20 +17,21 @@ interface ReportCardProps {
     updates_count?: number
     follows_count?: number
   }
-  index?: number
 }
 
-// Stable base variant — delay is added per-card via `custom` + a factory fn
+// Stable variant objects — defined once at module level
 const CARD_VARIANTS = {
   hidden: { opacity: 0, y: 15 },
-  visible: (delay: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.3, delay },
-  }),
+  visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
 }
 
-export function ReportCard({ report, index = 0 }: ReportCardProps) {
+const VIEWPORT = { once: true, margin: "-50px" }
+
+// Tiny 4x3 transparent-ish placeholder to avoid CLS while images load
+const BLUR_PLACEHOLDER =
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAADCAIAAAA7ljmRAAAADklEQVQIW2P4z8BQDwAEgAF/QualzQAAAABJRU5ErkJggg==" as const
+
+export function ReportCard({ report }: ReportCardProps) {
   const prefersReducedMotion = useReducedMotion()
   const photoUrl = getStorageUrl(report.photo_path)
 
@@ -47,6 +48,8 @@ export function ReportCard({ report, index = 0 }: ReportCardProps) {
                 className="object-cover"
                 sizes="(max-width: 640px) 100vw, 160px"
                 loading="lazy"
+                placeholder="blur"
+                blurDataURL={BLUR_PLACEHOLDER}
               />
             </div>
           )}
@@ -120,8 +123,8 @@ export function ReportCard({ report, index = 0 }: ReportCardProps) {
     <motion.div
       variants={CARD_VARIANTS}
       initial="hidden"
-      animate="visible"
-      custom={index * 0.05}
+      whileInView="visible"
+      viewport={VIEWPORT}
     >
       {inner}
     </motion.div>

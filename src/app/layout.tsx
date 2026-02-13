@@ -72,7 +72,10 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/Logo.png" type="image/png" />
         <link rel="apple-touch-icon" href="/Logo.png" />
-        <link href="https://api.mapbox.com/mapbox-gl-js/v3.18.1/mapbox-gl.css" rel="stylesheet" />
+        <link rel="preconnect" href="https://api.mapbox.com" />
+        {process.env.NEXT_PUBLIC_SUPABASE_URL && (
+          <link rel="preconnect" href={process.env.NEXT_PUBLIC_SUPABASE_URL} />
+        )}
       </head>
       <body className={`${GeistPixelCircle.className} antialiased`}>
         <ThemeProvider

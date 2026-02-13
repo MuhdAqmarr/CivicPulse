@@ -24,7 +24,7 @@ export default async function FeedPage({ searchParams }: FeedPageProps) {
     .from("reports")
     .select(`
       *,
-      creator:profiles!reports_creator_id_fkey(*),
+      creator:profiles!reports_creator_id_fkey(id, display_name, avatar_url),
       updates_count:report_updates(count),
       follows_count:report_follows(count)
     `)

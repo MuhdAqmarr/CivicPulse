@@ -27,6 +27,9 @@ import type { ReportWithDetails, Profile } from "@/lib/types"
 import { useRealtime } from "@/hooks/use-realtime"
 import { toast } from "sonner"
 
+const BLUR_PLACEHOLDER =
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAADCAIAAAA7ljmRAAAADklEQVQIW2P4z8BQDwAEgAF/QualzQAAAABJRU5ErkJggg==" as const
+
 interface ReportDetailProps {
   report: ReportWithDetails
   currentProfile: Profile | null
@@ -157,6 +160,8 @@ export function ReportDetail({ report, currentProfile }: ReportDetailProps) {
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 700px"
                 priority
+                placeholder="blur"
+                blurDataURL={BLUR_PLACEHOLDER}
               />
             </div>
           )}

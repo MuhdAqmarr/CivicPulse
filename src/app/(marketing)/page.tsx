@@ -1,7 +1,10 @@
 import type { Metadata } from "next"
+import dynamic from "next/dynamic"
 import { LandingHero } from "@/components/landing/hero"
-import { LandingFeatures } from "@/components/landing/features"
-import { LandingCTA } from "@/components/landing/cta"
+
+// Below-fold components — lazy-loaded to keep initial JS bundle small
+const LandingFeatures = dynamic(() => import("@/components/landing/features").then(m => ({ default: m.LandingFeatures })))
+const LandingCTA = dynamic(() => import("@/components/landing/cta").then(m => ({ default: m.LandingCTA })))
 
 export const metadata: Metadata = {
   title: "CivicPulse - Local Community Problem Reporter",

@@ -19,7 +19,7 @@ export function useRealtime({ table, filter, event = "*", onEvent, enabled = tru
     if (!enabled) return
 
     const supabase = createClient()
-    const channelName = `realtime-${table}-${filter || "all"}-${Date.now()}`
+    const channelName = `realtime-${table}-${filter || "all"}-${event}`
 
     const channel = supabase
       .channel(channelName)

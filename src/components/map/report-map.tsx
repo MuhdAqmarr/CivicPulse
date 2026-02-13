@@ -1,5 +1,6 @@
 "use client"
 
+import "mapbox-gl/dist/mapbox-gl.css"
 import { useState, useMemo, useCallback } from "react"
 import Map, {
   Marker,

@@ -14,11 +14,20 @@ export function PWAProvider() {
   const [showBanner, setShowBanner] = useState(false)
 
   useEffect(() => {
-    // Register service worker
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("/sw.js").catch(() => {
-        // SW registration failed, ignore silently
-      })
+    // Defer SW registration until after the page finishes loading
+    // so it doesn't compete with critical resources during first paint
+    const registerSW = () => {
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("/sw.js").catch(() => {
+          // SW registration failed, ignore silently
+        })
+      }
+    }
+
+    if (document.readyState === "complete") {
+      registerSW()
+    } else {
+      window.addEventListener("load", registerSW, { once: true })
     }
 
     // Listen for install prompt
@@ -30,7 +39,10 @@ export function PWAProvider() {
     }
 
     window.addEventListener("beforeinstallprompt", handler)
-    return () => window.removeEventListener("beforeinstallprompt", handler)
+    return () => {
+      window.removeEventListener("load", registerSW)
+      window.removeEventListener("beforeinstallprompt", handler)
+    }
   }, [])
 
   const handleInstall = async () => {

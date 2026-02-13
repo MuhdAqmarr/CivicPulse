@@ -1,16 +1,11 @@
 "use client"
 
-import { useRef } from "react"
+import { useRef, useEffect } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, MapPin, CheckCircle2, Users } from "lucide-react"
 import { motion } from "framer-motion"
 import { useReducedMotion } from "@/hooks/use-reduced-motion"
-import gsap from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { useGSAP } from "@gsap/react"
-
-gsap.registerPlugin(ScrollTrigger, useGSAP)
 
 // Variant objects defined outside the component — stable references, no re-creation on render
 const FADE_UP = {
@@ -25,24 +20,38 @@ export function LandingHero() {
   const heroRef = useRef<HTMLDivElement>(null)
   const prefersReducedMotion = useReducedMotion()
 
-  useGSAP(
-    () => {
-      if (prefersReducedMotion) return
-      gsap.utils.toArray<HTMLElement>(".parallax-layer").forEach((layer, i) => {
-        gsap.to(layer, {
-          y: (i + 1) * 40,
-          ease: "none",
-          scrollTrigger: {
-            trigger: heroRef.current,
-            start: "top top",
-            end: "bottom top",
-            scrub: true,
-          },
+  // Dynamic import GSAP only when parallax is needed (saves ~80KB from initial bundle)
+  useEffect(() => {
+    if (prefersReducedMotion) return
+
+    let ctx: { revert: () => void } | undefined
+    ;(async () => {
+      const [{ default: gsap }, { ScrollTrigger }] = await Promise.all([
+        import("gsap"),
+        import("gsap/ScrollTrigger"),
+      ])
+      gsap.registerPlugin(ScrollTrigger)
+
+      ctx = gsap.context(() => {
+        gsap.utils.toArray<HTMLElement>(".parallax-layer").forEach((layer, i) => {
+          gsap.to(layer, {
+            y: (i + 1) * 40,
+            ease: "none",
+            scrollTrigger: {
+              trigger: heroRef.current,
+              start: "top top",
+              end: "bottom top",
+              scrub: true,
+            },
+          })
         })
-      })
-    },
-    { scope: heroRef, dependencies: [prefersReducedMotion] }
-  )
+      }, heroRef)
+    })()
+
+    return () => {
+      ctx?.revert()
+    }
+  }, [prefersReducedMotion])
 
   const animProps = prefersReducedMotion ? ({} as typeof FADE_UP) : FADE_UP
 

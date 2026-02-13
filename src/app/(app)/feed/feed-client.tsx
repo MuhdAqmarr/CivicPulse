@@ -197,8 +197,8 @@ export function FeedClient({ initialReports, currentFilters }: FeedClientProps) 
         />
       ) : (
         <div className="space-y-4">
-          {initialReports.map((report, i) => (
-            <ReportCard key={report.id} report={report} index={i} />
+          {initialReports.map((report) => (
+            <ReportCard key={report.id} report={report} />
           ))}
         </div>
       )}
