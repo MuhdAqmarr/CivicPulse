@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     description: "Report local issues, track progress, and help verify fixes in your community.",
     images: [
       {
-        url: "/og-image.png",
+        url: "/Logo.png",
         width: 1200,
         height: 630,
         alt: "CivicPulse - Community Problem Reporter",
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "CivicPulse - Local Community Problem Reporter",
     description: "Report local issues, track progress, and help verify fixes in your community.",
-    images: ["/og-image.png"],
+    images: ["/Logo.png"],
   },
 }
 
@@ -75,8 +75,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/icons/icon-192.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/icons/icon-192.svg" />
+        <link rel="icon" href="/Logo.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/Logo.png" />
         <link href="https://api.mapbox.com/mapbox-gl-js/v3.18.1/mapbox-gl.css" rel="stylesheet" />
       </head>
       <body className={`${inter.className} antialiased`}>

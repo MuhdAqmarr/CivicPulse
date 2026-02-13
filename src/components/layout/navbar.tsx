@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { Plus, Shield, User } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -44,9 +45,7 @@ export function Navbar({ profile }: NavbarProps) {
       <nav className="container mx-auto flex h-16 items-center justify-between px-4" aria-label="Main navigation">
         <div className="flex items-center gap-6">
           <Link href="/" className="flex items-center gap-2 font-bold text-lg">
-            <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
-              <Shield className="h-5 w-5 text-primary-foreground" />
-            </div>
+            <Image src="/Logo.png" alt="CivicPulse" width={32} height={32} className="h-8 w-8 rounded-lg" />
             <span className="hidden sm:inline">CivicPulse</span>
           </Link>
 

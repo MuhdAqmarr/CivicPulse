@@ -119,21 +119,6 @@ export function ReportDetail({ report, currentProfile }: ReportDetailProps) {
       {/* Main card */}
       <Card>
         <CardContent className="p-6">
-          {/* Header */}
-          <div className="flex items-start justify-between gap-3 mb-4">
-            <div className="flex-1">
-              <h1 className="text-2xl font-bold tracking-tight mb-2">{report.title}</h1>
-              <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
-                <StatusBadge status={report.status} closureConfirmed={report.closure_confirmed} />
-                <Badge variant="secondary">{report.category}</Badge>
-                <span className="flex items-center gap-1">
-                  <Clock className="h-3.5 w-3.5" />
-                  {formatRelativeTime(report.created_at)}
-                </span>
-              </div>
-            </div>
-          </div>
-
           {/* Creator */}
           <Link
             href={`/u/${report.creator?.id}`}
@@ -146,8 +131,21 @@ export function ReportDetail({ report, currentProfile }: ReportDetailProps) {
             <span className="text-sm font-medium">{report.creator?.display_name || "Anonymous"}</span>
           </Link>
 
+          {/* Title */}
+          <h1 className="text-2xl font-bold tracking-tight mb-3">{report.title}</h1>
+
           {/* Description */}
-          <p className="text-sm leading-relaxed whitespace-pre-wrap mb-6">{report.description}</p>
+          <p className="text-sm leading-relaxed whitespace-pre-wrap mb-4">{report.description}</p>
+
+          {/* Status, Category, Time */}
+          <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground mb-6">
+            <StatusBadge status={report.status} closureConfirmed={report.closure_confirmed} />
+            <Badge variant="secondary">{report.category}</Badge>
+            <span className="flex items-center gap-1">
+              <Clock className="h-3.5 w-3.5" />
+              {formatRelativeTime(report.created_at)}
+            </span>
+          </div>
 
           {/* Photo */}
           {photoUrl && (

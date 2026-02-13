@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useCallback } from "react"
+import { useState, useCallback, useEffect, useRef } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { Search, SlidersHorizontal, X, List, Map as MapIcon } from "lucide-react"
 import { Input } from "@/components/ui/input"
@@ -47,8 +47,21 @@ export function FeedClient({ initialReports, currentFilters }: FeedClientProps) 
     [router, searchParams]
   )
 
+  // Debounced auto-search as user types
+  const debounceRef = useRef<ReturnType<typeof setTimeout>>(null)
+  useEffect(() => {
+    if (search === (currentFilters.q || "")) return
+    debounceRef.current = setTimeout(() => {
+      updateFilters("q", search)
+    }, 400)
+    return () => {
+      if (debounceRef.current) clearTimeout(debounceRef.current)
+    }
+  }, [search, updateFilters, currentFilters.q])
+
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
+    if (debounceRef.current) clearTimeout(debounceRef.current)
     updateFilters("q", search)
   }
 
