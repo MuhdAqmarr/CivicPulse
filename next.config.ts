@@ -35,7 +35,8 @@ const nextConfig: NextConfig = {
             "style-src 'self' 'unsafe-inline'", // Required for styled-components and CSS-in-JS
             "img-src 'self' data: https: blob:",
             "font-src 'self' data:",
-            "connect-src 'self' https://*.supabase.co wss://*.supabase.co",
+            "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://api.mapbox.com https://*.tiles.mapbox.com https://events.mapbox.com",
+            "worker-src 'self' blob:",
             "frame-ancestors 'none'",
           ].join('; '),
         },
