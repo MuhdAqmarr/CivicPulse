@@ -49,7 +49,7 @@ function SignInContent() {
       return
     }
 
-    router.push(redirect)
+    router.push("/admin")
     router.refresh()
   }
 
