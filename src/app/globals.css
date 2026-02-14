@@ -144,12 +144,22 @@ select:focus-visible,
   outline-offset: 2px;
 }
 
-/* Mapbox popup overrides to match theme */
+/* Mapbox popup overrides to match theme — use raw CSS vars so dark mode cascades correctly */
 .mapboxgl-popup-content {
-  @apply bg-card text-card-foreground rounded-lg shadow-md p-3 text-sm;
+  background-color: var(--card) !important;
+  color: var(--card-foreground) !important;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  padding: 0.75rem;
+  font-size: 0.875rem;
 }
 .mapboxgl-popup-close-button {
-  @apply text-muted-foreground hover:text-foreground text-lg px-1;
+  color: var(--muted-foreground);
+  font-size: 1.125rem;
+  padding: 0 0.25rem;
+}
+.mapboxgl-popup-close-button:hover {
+  color: var(--foreground);
 }
 .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
   border-top-color: var(--card);
