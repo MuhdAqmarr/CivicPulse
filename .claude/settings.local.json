@@ -9,7 +9,17 @@
       "Bash(ls:*)",
       "Bash(npx tsc:*)",
       "Bash(python -c:*)",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(node -e:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "WebFetch(domain:github.com)",
+      "Bash(npm ls:*)",
+      "Bash(findstr:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(del \"c:\\\\Dev\\\\Web\\\\Local-Community-Problem-Reporter\\\\src\\\\components\\\\motion-provider.tsx\")",
+      "Bash(git status:*)"
     ]
   }
 }
